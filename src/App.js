@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Character from './components/Character'
 import { data } from './mocks/handlers';
 import './App.css';
 import SearchBar from './components/xxx';
+import axios from 'axios';
 
 const App = () => {
 
 
-  const [egg, yolk] = useState(data);
+  const [egg, yolk] = useState([]);
 
   /* const [setName, setSetName] = useState(''); */
 
@@ -15,6 +16,17 @@ const App = () => {
     console.log('red');
    return setSetName(person.name); 
   }) */
+
+  useEffect(()=> {
+     axios.get('https://swapi.dev/api/people/')
+     .then((res)=>{
+       yolk(res.data);
+       console.log(res.data);
+     })
+     .catch((prob)=>{
+       console.error(prob);
+     })
+  }, [])
  let ggg = egg.map((person, idx)=> {
     console.log('red');
   return <Character person={person} key={idx}/>
@@ -37,11 +49,7 @@ const App = () => {
     <div className="App">
       <h1 className="Header">Star Wars Major characters</h1>
       <SearchBar />
-      {/* { egg.map((person, idx)=> {
-         console.log('red');
-       return <Character person={person} key={idx}/>
-    })
-    } */ggg}
+      {ggg}
     </div>
    
   );
