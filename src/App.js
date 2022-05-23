@@ -1,21 +1,25 @@
 import React, {useState} from 'react';
-import {Character} from 'C:/Users/ruthe/documents/web-sprint-challenge-intro-to-react/src/components/Character'
+import Character from './components/Character'
 import { data } from './mocks/handlers';
 import './App.css';
+import SearchBar from './components/xxx';
 
 const App = () => {
 
 
-  const [egg, setEgg] = useState(data);
-  const [person, setPerson]= useState('');
+  const [egg, yolk] = useState(data);
 
-   const name =  egg.forEach( exp => {
-        return exp.name
-  })
-  .then(()=> console.log('blue'))
-  .catch(()=> console.log('error'))
+  /* const [setName, setSetName] = useState(''); */
 
-  setPerson(name);
+/*   egg.forEach((person, idx)=> {
+    console.log('red');
+   return setSetName(person.name); 
+  }) */
+ let ggg = egg.map((person, idx)=> {
+    console.log('red');
+  return <Character person={person} key={idx}/>
+})
+
 
 
 
@@ -31,8 +35,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">{person}</h1>
+      <h1 className="Header">Star Wars Major characters</h1>
+      <SearchBar />
+      {/* { egg.map((person, idx)=> {
+         console.log('red');
+       return <Character person={person} key={idx}/>
+    })
+    } */ggg}
     </div>
+   
   );
 }
 
